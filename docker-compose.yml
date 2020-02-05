@@ -1,6 +1,6 @@
 version: '3'
 networks:
-  laravel: 
+  laravel:
 services:
   nginx:
     image: nginx:stable-alpine
@@ -43,21 +43,3 @@ services:
       - "9000:9000"
     networks:
       - laravel
-
-#  mysql:
-#    image: mysql:5.7.22
-#    container_name: mysql
-#    restart: unless-stopped
-#    ports:
-#      - "3306:3306"
-#    volumes:
-#      - ./mysql:/var/lib/mysql
-#    environment:
-#      MYSQL_DATABASE: homestead
-#      MYSQL_USER: homestead
-#      MYSQL_PASSWORD: homestead
-#      MYSQL_ROOT_PASSWORD: root
-#      SERVICE_TAGS: dev
-#      SERVICE_NAME: mysql
-#    networks:
-#      - laravel
