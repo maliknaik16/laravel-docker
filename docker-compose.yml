@@ -1,6 +1,6 @@
 version: '3'
 networks:
-  laravel: 
+  laravel:
 services:
   postgres:
     image: postgres:12.1
@@ -10,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./postgresql:/var/lib/postgresql
+      - ./postgresql:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: homestead
       POSTGRES_USER: homestead
