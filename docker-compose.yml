@@ -1,7 +1,8 @@
 version: '3'
 networks:
-  laravel:
+  pmfms:
 services:
+  # Postgres
   postgres:
     image: postgres:12.1
     container_name: postgresql
@@ -18,7 +19,8 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: postgresql
     networks:
-      - laravel
+      - pmfms
+  # PHP(Laravel) and Apache
   php:
     build:
       context: .
@@ -27,7 +29,19 @@ services:
     volumes:
       - ./:/var/www/html
     ports:
-#     - "9000:9000"
       - "8080:80"
     networks:
-      - laravel
+      - pmfms
+  # pgAdmin 4
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres
+    ports:
+      - "5555:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    restart: unless-stopped
+    networks:
+      - pmfms
